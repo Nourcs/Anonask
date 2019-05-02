@@ -1,0 +1,36 @@
+<h1>Sign Up</h1>
+
+<form action="/signup/facebook" method="POST">
+    <button type="submit">Facebook</button>
+</form>
+<br>
+<form action="/signup/google" method="POST">
+    <button type="submit">Google</button>
+</form>
+<br>
+<form action="/signup" method="POST">
+    <div>
+        <input type="email" name="email" placeholder="E-mail" />
+    </div>
+    <div>
+        <input type="text" name="fullname" placeholder="Full Name" />
+    </div>
+    <div>
+        <input type="text" name="usernmame" placeholder="Username" />
+
+    </div>
+    <div>
+        <label>Birthday</label><br>
+        <input type="date" name="birthdate">
+    </div>
+    <div>
+        <label>Gender</label><br>
+        <select name='gender'>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+    </div>
+
+    <input type="password" name="password" placeholder="Password" />
+    <button type="submit">Log in</button>
+</form>
