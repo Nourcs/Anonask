@@ -1,36 +1,76 @@
 <h1>Sign Up</h1>
 
-<form action="/signup/facebook" method="POST">
-    <button type="submit">Facebook</button>
-</form>
+<button type="submit" id="facebook-signin">Facebook</button>
 <br>
-<form action="/signup/google" method="POST">
-    <button type="submit">Google</button>
-</form>
+<button type="submit" id='google-signin'>Google</button>
 <br>
-<form action="/signup" method="POST">
-    <div>
-        <input type="email" name="email" placeholder="E-mail" />
-    </div>
-    <div>
-        <input type="text" name="fullname" placeholder="Full Name" />
-    </div>
-    <div>
-        <input type="text" name="usernmame" placeholder="Username" />
+<div>
+    <input type="email" name="email" placeholder="E-mail" id="email" />
+</div>
+<div>
+    <input type=" text" name="fullname" placeholder="Full Name" />
+</div>
+<div>
+    <input type="text" name="usernmame" placeholder="Username" />
 
-    </div>
-    <div>
-        <label>Birthday</label><br>
-        <input type="date" name="birthdate">
-    </div>
-    <div>
-        <label>Gender</label><br>
-        <select name='gender'>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-        </select>
-    </div>
+</div>
+<div>
+    <label>Birthday</label><br>
+    <input type="date" name="birthdate">
+</div>
+<div>
+    <label>Gender</label><br>
+    <select name='gender'>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+    </select>
+</div>
 
-    <input type="password" name="password" placeholder="Password" />
-    <button type="submit">Log in</button>
-</form>
+<input type="password" name="password" placeholder="Password" id="password" />
+<button type="submit" id='email-signup'>Sign up</button>
+
+<script>
+    var googleProvider = new firebase.auth.GoogleAuthProvider();
+    var facebookProvider = new firebase.auth.FacebookAuthProvider();
+
+    document.querySelector("#email-signup").addEventListener('click', () => {
+        let email = document.querySelector('#email').value;
+        let password = document.querySelector('#password').value;
+        console.log('email :', email, 'password : ', password)
+        firebase
+            .auth()
+            .createUserWithEmailAndPassword(email, password)
+            .catch(error => {
+                console.error(error);
+            });
+    })
+
+    document.querySelector("#google-signin").addEventListener("click", () => {
+        console.log("clicked");
+
+        firebase
+            .auth()
+            .signInWithPopup(googleProvider)
+            .then(result => {
+                console.log(result);
+            })
+            .catch(error => {
+                console.error(error);
+                console.log(error);
+            });
+    })
+
+    document.querySelector("#facebook-signin").addEventListener("click", () => {
+        firebase
+            .auth()
+            .signInWithPopup(facebookProvider)
+            .then(result => {
+                console.log(result);
+            })
+            .catch(error => {
+                console.error(error);
+                console.log(error);
+            });
+    })
+
+</script>

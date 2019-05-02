@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    {{{body}}}
-  </body>
+
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase.js"></script>
+  <script> var config = {
+      apiKey: "AIzaSyCmszZKpmFluSKoiRl61pCsCLyBLq56Mmc",
+      authDomain: "anonask-f3c16.firebaseapp.com",
+      databaseURL: "https://anonask-f3c16.firebaseio.com",
+      projectId: "anonask-f3c16",
+      storageBucket: "anonask-f3c16.appspot.com",
+      messagingSenderId: "268837150340"
+    };
+
+    firebase.initializeApp(config);
+  </script>
+
+</head>
+
+<body>
+  {{{body}}}
+</body>
+
+
 </html>

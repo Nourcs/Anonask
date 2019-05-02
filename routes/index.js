@@ -8,6 +8,7 @@ var signupRoute = require("./auth/signup");
 var logoutRoute = require("./auth/logout");
 
 router.get("/", function(req, res, next) {
+  console.log("User : ", firebase.auth().currentUser);
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
       res.json({ user });

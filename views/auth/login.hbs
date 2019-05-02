@@ -1,14 +1,57 @@
 <h1>Log In</h1>
-<form action="/login" method="POST">
-    <input type="email" name="email" placeholder="E-mail" />
-    <input type="password" name="password" placeholder="Password" />
-    <button type="submit">Log in</button>
-</form>
+<input type="email" name="email" placeholder="E-mail" id="email" />
+<input type="password" name="password" placeholder="Password" id="password" />
+<button type="submit" id="email-signin">Log in</button>
 <br>
-<form action="/login/facebook" method="POST">
-    <button type="submit">Facebook</button>
-</form>
+<button type="submit" id="facebook-signin">Facebook</button>
 <br>
-<form action="/login/google" method="POST">
-    <button type="submit">Google</button>
-</form>
+<button type="submit" id='google-signin'>Google</button>
+{{!-- Scripts --}}
+<script>
+    var googleProvider = new firebase.auth.GoogleAuthProvider();
+    var facebookProvider = new firebase.auth.FacebookAuthProvider();
+
+    document.querySelector("#email-signin").addEventListener('click', () => {
+        let email = document.querySelector('#email').value;
+        let password = document.querySelector('#password').value;
+        console.log('email :', email, 'password : ', password)
+        firebase
+            .auth()
+            .signInWithEmailAndPassword(email, password)
+            .catch(error => {
+                console.error(error);
+            });
+    })
+
+    document.querySelector("#google-signin").addEventListener("click", () => {
+        console.log("clicked");
+
+        firebase
+            .auth()
+            .signInWithPopup(googleProvider)
+            .then(result => {
+                console.log(result);
+            })
+            .catch(error => {
+                console.error(error);
+                console.log(error);
+            });
+    })
+
+    document.querySelector("#facebook-signin").addEventListener("click", () => {
+        console.log("clicked");
+
+        firebase
+            .auth()
+            .signInWithPopup(facebookProvider)
+            .then(result => {
+                console.log(result);
+            })
+            .catch(error => {
+                console.error(error);
+                console.log(error);
+            });
+    })
+
+
+</script>

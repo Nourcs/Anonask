@@ -2,8 +2,8 @@ var express = require("express");
 var router = express.Router();
 
 var firebase = require("firebase");
+
 var facebookProvider = new firebase.auth.FacebookAuthProvider();
-var googleProvider = new firebase.auth.GoogleAuthProvider();
 
 router.get("/", (req, res, next) => {
   res.render("auth/login");
@@ -29,10 +29,12 @@ router.post("/facebook", (req, res, next) => {
     })
     .catch(error => {
       console.error(error);
+      res.json(error);
     });
 });
 
 router.post("/google", (req, res, next) => {
+  var googleProvider = new firebase.auth.GoogleAuthProvider();
   firebase
     .auth()
     .signInWithPopup(googleProvider)
@@ -41,6 +43,7 @@ router.post("/google", (req, res, next) => {
     })
     .catch(error => {
       console.error(error);
+      res.json(error);
     });
 });
 module.exports = router;
