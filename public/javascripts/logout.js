@@ -7,11 +7,15 @@ firebase.auth().onAuthStateChanged(function(user) {
   }
 });
 
-document.querySelector("#logout").addEventListener("click", () => {
-  firebase
-    .auth()
-    .signOut()
-    .then(() => {
-      axios.post("/logout");
-    });
-});
+if (document.querySelector("#logout")) {
+  document.querySelector("#logout").addEventListener("click", () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        axios.post("/logout").then(() => {
+          window.location.href = "/";
+        });
+      });
+  });
+}

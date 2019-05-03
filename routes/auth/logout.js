@@ -5,7 +5,8 @@ var firebase = require("firebase");
 
 // Logout Route
 router.post("/", (req, res, next) => {
-  res.clearCookie("currentUser").redirect("/");
+  res.clearCookie("currentUser");
+  res.redirect("/");
 });
 
 module.exports = router;

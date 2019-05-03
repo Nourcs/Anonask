@@ -4,10 +4,15 @@ var router = express.Router();
 var loginRoute = require("./auth/login");
 var signupRoute = require("./auth/signup");
 var logoutRoute = require("./auth/logout");
-var profiletRoute = require("./auth/profile");
+var profileRoute = require("./navigation/profile");
 
 router.get("/", function(req, res, next) {
-  res.render("index");
+  let currentUser = null;
+  if (req.cookies) {
+    currentUser = req.cookies.currentUser;
+  }
+  // res.json({ currentUser });
+  res.render("index", { currentUser });
 });
 
 router.get("/current", (req, res, next) => {

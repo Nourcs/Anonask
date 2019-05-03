@@ -9,7 +9,9 @@ document.querySelector("#email-signin").addEventListener("click", () => {
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(user => {
-      axios.post("/login/email", user);
+      axios.post("/login/email", user).then(() => {
+        window.location.href = "/";
+      });
     });
 });
 
@@ -21,9 +23,13 @@ document.querySelector("#google-signin").addEventListener("click", () => {
     .then(result => {
       console.log(result);
       if (result.additionalUserInfo.isNewUser) {
-        axios.post("/login/provider", result);
+        axios.post("/login/provider", result).then(() => {
+          window.location.href = "/";
+        });
       } else {
-        axios.post("/login", result);
+        axios.post("/login", result).then(() => {
+          window.location.href = "/";
+        });
       }
     });
 });
@@ -35,9 +41,13 @@ document.querySelector("#facebook-signin").addEventListener("click", () => {
     .signInWithPopup(facebookProvider)
     .then(result => {
       if (result.additionalUserInfo.isNewUser) {
-        axios.post("/login/provider", result);
+        axios.post("/login/provider", result).then(() => {
+          window.location.href = "/";
+        });
       } else {
-        axios.post("/login", result);
+        axios.post("/login", result).then(() => {
+          window.location.href = "/";
+        });
       }
     });
 });
