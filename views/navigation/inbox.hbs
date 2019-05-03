@@ -1,1 +1,10 @@
 <h1>Inbox</h1>
+
+{{#each questions}}
+<h1>Question {{@index}} </h1>
+<h5>{{this.question}}</h5>
+<form action="/profile/answer" method="POST">
+    <input type="text" name="answer" />
+    <button type="submit">Submit </button>
+</form>
+{{/each}}

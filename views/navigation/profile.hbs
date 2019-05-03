@@ -1,2 +1,8 @@
 <img src={{currentUser.profilePicture}} style="border-radius:100%;width:25%;" />
 <h1> {{currentUser.fullName}}</h1>
+
+<form action="profile/new/question" method="POST">
+    <h3>Ask Yourself</h3>
+    <input type='text' placeholder="What, When, Why ... Ask ..." name="question" />
+    <button type='submit'>Send</button>
+</form>
