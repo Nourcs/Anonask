@@ -5,10 +5,10 @@ var cookieParser = require("cookie-parser");
 var User = require("../../models/user");
 
 var mongoose = require("mongoose");
-var authMiddleware = require("./authMiddleware");
+var authMiddleware = require("../authMiddleware");
 
 // Login Route
-router.get("/", authMiddleware.isLoggedIn, (req, res, next) => {
+router.get("/", authMiddleware.currentUser, (req, res, next) => {
   res.render("auth/login");
 });
 

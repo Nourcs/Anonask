@@ -8,7 +8,9 @@ var mongoose = require("mongoose");
 
 // Old User Log In
 router.get("/", (req, res, next) => {
-  res.json({ status: "Profile" });
+  let currentUser = req.cookies.currentUser[0];
+  console.log(currentUser);
+  res.render("navigation/profile", { currentUser });
 });
 
 module.exports = router;
