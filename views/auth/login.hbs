@@ -6,52 +6,6 @@
 <button type="submit" id="facebook-signin">Facebook</button>
 <br>
 <button type="submit" id='google-signin'>Google</button>
-{{!-- Scripts --}}
-<script>
-    var googleProvider = new firebase.auth.GoogleAuthProvider();
-    var facebookProvider = new firebase.auth.FacebookAuthProvider();
 
-    document.querySelector("#email-signin").addEventListener('click', () => {
-        let email = document.querySelector('#email').value;
-        let password = document.querySelector('#password').value;
-        console.log('email :', email, 'password : ', password)
-        firebase
-            .auth()
-            .signInWithEmailAndPassword(email, password)
-            .catch(error => {
-                console.error(error);
-            });
-    })
-
-    document.querySelector("#google-signin").addEventListener("click", () => {
-        console.log("clicked");
-
-        firebase
-            .auth()
-            .signInWithPopup(googleProvider)
-            .then(result => {
-                console.log(result);
-            })
-            .catch(error => {
-                console.error(error);
-                console.log(error);
-            });
-    })
-
-    document.querySelector("#facebook-signin").addEventListener("click", () => {
-        console.log("clicked");
-
-        firebase
-            .auth()
-            .signInWithPopup(facebookProvider)
-            .then(result => {
-                console.log(result);
-            })
-            .catch(error => {
-                console.error(error);
-                console.log(error);
-            });
-    })
-
-
-</script>
+{{!-- Login Scripts --}}
+<script src="/javascripts/login.js"></script>

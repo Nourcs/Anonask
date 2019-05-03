@@ -15,6 +15,22 @@ firebase.initializeApp(config);
 
 var app = express();
 
+// Mongoose
+
+const mongoose = require("mongoose");
+mongoose
+  .connect("mongodb://nourcs:redalert2@ds151066.mlab.com:51066/anonask", {
+    useNewUrlParser: true
+  })
+  .then(x => {
+    console.log(
+      `Connected to Mongo! Database name: "${x.connections[0].name}"`
+    );
+  })
+  .catch(err => {
+    console.error("Error connecting to mongo", err);
+  });
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
