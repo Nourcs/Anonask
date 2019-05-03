@@ -10,6 +10,14 @@ router.get("/", (req, res, next) => {
   res.render("auth/login");
 });
 
+// Old User Log In
+router.post("/", (req, res, next) => {
+  console.log(req.body);
+  User.find({ uid: req.body.user.uid }).then(user => {
+    res.cookie("currentUser", cookieParser.JSONCookies(user)).redirect("/");
+  });
+});
+
 // Sign in with Email
 router.post("/email", (req, res, next) => {
   User.find({ uid: req.body.user.uid }).then(user => {

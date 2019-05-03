@@ -22,6 +22,8 @@ document.querySelector("#google-signin").addEventListener("click", () => {
       console.log(result);
       if (result.additionalUserInfo.isNewUser) {
         axios.post("/login/provider", result);
+      } else {
+        axios.post("/login", result);
       }
     });
 });
@@ -34,6 +36,8 @@ document.querySelector("#facebook-signin").addEventListener("click", () => {
     .then(result => {
       if (result.additionalUserInfo.isNewUser) {
         axios.post("/login/provider", result);
+      } else {
+        axios.post("/login", result);
       }
     });
 });
