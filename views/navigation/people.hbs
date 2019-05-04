@@ -1,1 +1,33 @@
 <h1>People</h1>
+
+<input type="text" name="search" placeholder="Search for People" id="search-people" />
+<div id="users"></div>
+
+<script>
+    document.querySelector("#search-people").addEventListener('input', (e) => {
+        if (e.target.value) {
+            axios.post("people/search", { name: e.target.value }).then(res => {
+                let arr = [...res.data];
+                console.log(arr);
+                console.log(res.data);
+                arr.sort((a, b) => {
+                    return a.fullName.indexOf(e.target.value) - b.fullName.indexOf(e.target.value);
+                })
+                if (arr.length > 0) {
+                    let str = ''
+                    for (let i = 0; i < arr.length; i++) {
+                        str += `
+                    <br><div> <a href="/${arr[i]._id}">${arr[i].fullName}</a> </div>
+                `
+                    }
+                    document.querySelector("#users").innerHTML = str;
+                } else {
+                    document.querySelector("#users").innerHTML = ""
+                }
+
+            });
+        } else {
+            document.querySelector("#users").innerHTML = ""
+        }
+    });
+</script>

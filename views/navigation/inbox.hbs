@@ -3,8 +3,8 @@
 {{#each questions}}
 <h1>Question {{@index}} </h1>
 <h5>{{this.question}}</h5>
-<form action="/profile/answer" method="POST">
-    <input type="text" name="answer" />
-    <button type="submit">Submit </button>
+<form action="/profile/answer/{{this._id}}" method="POST">
+    <input type="text" name="answer" placeholder="Write your answer." />
+    <button type="submit"> Answer </button>
 </form>
 {{/each}}

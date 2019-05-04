@@ -6,3 +6,9 @@
     <input type='text' placeholder="What, When, Why ... Ask ..." name="question" />
     <button type='submit'>Send</button>
 </form>
+{{#each posts}}
+<div style="border:1px solid black; margin : 10px 0;padding :20px; width : 14.75%;">
+    <h3>{{this.question}}</h3>
+    <p>{{this.answer}}</p>
+</div>
+{{/each}}

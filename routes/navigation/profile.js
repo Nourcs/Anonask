@@ -4,14 +4,16 @@ var cookieParser = require("cookie-parser");
 
 var Question = require("../../models/questions");
 var User = require("../../models/user");
+var Post = require("../../models/posts");
 
 var mongoose = require("mongoose");
 
 // Old User Log In
 router.get("/", (req, res, next) => {
   let currentUser = req.cookies.currentUser[0];
-  console.log(currentUser);
-  res.render("navigation/profile", { currentUser });
+  Post.find({ to: currentUser._id }).then(result => {
+    res.render("navigation/profile", { currentUser, posts: result });
+  });
 });
 
 router.post("/new/question", (req, res, next) => {
@@ -26,7 +28,12 @@ router.post("/new/question", (req, res, next) => {
   res.redirect("/");
 });
 
-router.post("/answer", (req, res, next) => {
-  res.json(req.body);
+router.post("/answer/:id", (req, res, next) => {
+  Question.findByIdAndUpdate(req.params.id, { answered: true }).then(result => {
+    let { from, to, question } = result;
+    let answer = req.body.answer;
+    Post.create({ from, to, questionId: result, answer, question });
+    res.redirect("/");
+  });
 });
 module.exports = router;
