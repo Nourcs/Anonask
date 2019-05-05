@@ -8,10 +8,11 @@
         if (e.target.value) {
             axios.post("people/search", { name: e.target.value }).then(res => {
                 let arr = [...res.data];
+                let name = e.target.value.toLowerCase();
                 console.log(arr);
                 console.log(res.data);
                 arr.sort((a, b) => {
-                    return a.fullName.indexOf(e.target.value) - b.fullName.indexOf(e.target.value);
+                    return a.fullName.indexOf(name) - b.fullName.indexOf(name);
                 })
                 if (arr.length > 0) {
                     let str = ''
