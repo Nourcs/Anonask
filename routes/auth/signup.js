@@ -17,8 +17,7 @@ router.get("/", authMiddleware.currentUser, (req, res, next) => {
 router.post("/email", (req, res, next) => {
   let { email, uid } = req.body.user;
   User.create({ email, uid }).then(user => {
-    console.log(user);
-    res.cookie("currentUser", cookieParser.JSONCookies([user])).redirect("/");
+    res.cookie("currentUser", cookieParser.JSONCookies(user)).redirect("/");
   });
 });
 
@@ -31,7 +30,6 @@ router.post("/provider", (req, res, next) => {
 
   User.create({ uid, email, fullName, profilePicture })
     .then(user => {
-      console.log(user);
       res.cookie("currentUser", cookieParser.JSONCookies(user)).redirect("/");
     })
     .catch(error => {

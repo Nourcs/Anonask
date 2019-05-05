@@ -31,9 +31,7 @@ router.post("/people/:id/newQuestion", (req, res, next) => {
     let from = req.cookies.currentUser;
     let to = user;
     let question = req.body.question;
-    Question.create({ from, to, question }).then(question => {
-      console.log(user);
-    });
+    Question.create({ from, to, question }).then(question => {});
     res.redirect("/");
   });
 });

@@ -15,8 +15,7 @@ const userSchema = new Schema(
     },
     profilePicture: {
       type: String,
-      default:
-        "https://articles-images.sftcdn.net/wp-content/uploads/sites/3/2016/01/wallpaper-for-facebook-profile-photo.jpg"
+      default: "https://mnsearch.org/wp-content/uploads/2014/10/blank-2017.jpg"
     }
   },
   {

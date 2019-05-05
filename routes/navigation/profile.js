@@ -10,7 +10,7 @@ var mongoose = require("mongoose");
 
 // Old User Log In
 router.get("/", (req, res, next) => {
-  let currentUser = req.cookies.currentUser[0];
+  let currentUser = req.cookies.currentUser;
   Post.find({ to: currentUser._id }).then(result => {
     res.render("navigation/profile", { currentUser, posts: result });
   });
@@ -18,13 +18,9 @@ router.get("/", (req, res, next) => {
 
 router.post("/new/question", (req, res, next) => {
   let from = req.cookies.currentUser;
-
   let to = req.cookies.currentUser;
   let question = req.body.question;
-
-  Question.create({ from, to, question }).then(question => {
-    console.log(user);
-  });
+  Question.create({ from, to, question }).then(question => {});
   res.redirect("/");
 });
 
