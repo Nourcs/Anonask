@@ -12,9 +12,10 @@ router.get("/people", (req, res, next) => {
 });
 
 router.post("/people/search", (req, res, next) => {
-  let name = req.body.name.toLowerCase();
+  let name = req.body.name;
   console.log(name);
-  User.find({ fullName: new RegExp(name, "gi") }).then(result => {
+  User.find({ fullName: new RegExp(name, "gi") })
+  .then(result => {
     res.json(result);
   });
   // res.send("asba");
