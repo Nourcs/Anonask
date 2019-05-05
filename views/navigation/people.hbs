@@ -18,7 +18,7 @@
                     let str = ''
                     for (let i = 0; i < arr.length; i++) {
                         str += `
-                    <br><div> <a href="/${arr[i]._id}">${arr[i].fullName}</a> </div>
+                    <br><div> <a href="/account/people/${arr[i]._id}">${arr[i].fullName}</a> </div>
                 `
                     }
                     document.querySelector("#users").innerHTML = str;
