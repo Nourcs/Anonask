@@ -7,4 +7,19 @@
     <input type="text" name="answer" placeholder="Write your answer." />
     <button type="submit"> Answer </button>
 </form>
+<button type="submit" id="delete-post" questionId="{{this._id}}"> Delete </button>
 {{/each}}
+
+<script>
+    let deleteBtns = document.querySelectorAll("#delete-post");
+    for (let i = 0; i < deleteBtns.length; i++) {
+        deleteBtns[i].addEventListener('click', e => {
+            console.log(e.target.attributes.questionId.value)
+            let questionId = e.target.attributes.questionId.value;
+            axios.post("/account/inbox/delete", { questionId }).then(() => {
+                window.location.href = "/account/inbox";
+            });
+        })
+    }
+
+</script>

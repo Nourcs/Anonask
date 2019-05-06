@@ -6,7 +6,8 @@ const questionSchema = new Schema(
     from: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     to: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     question: String,
-    answered: { type: Boolean, default: false }
+    answered: { type: Boolean, default: false },
+    seen: { type: Boolean, default: false }
   },
   {
     timestamps: true

@@ -11,9 +11,11 @@ var mongoose = require("mongoose");
 // Old User Log In
 router.get("/", (req, res, next) => {
   let currentUser = req.cookies.currentUser;
-  Post.find({ to: currentUser._id }).then(result => {
-    res.render("navigation/profile", { currentUser, posts: result });
-  });
+  Post.find({ to: currentUser._id })
+    .sort({ createdAt: -1 })
+    .then(result => {
+      res.render("navigation/profile", { currentUser, posts: result });
+    });
 });
 
 router.post("/new/question", (req, res, next) => {
@@ -22,6 +24,17 @@ router.post("/new/question", (req, res, next) => {
   let question = req.body.question;
   Question.create({ from, to, question }).then(question => {});
   res.redirect("/");
+});
+
+router.post("/delete", (req, res, next) => {
+  Question.findByIdAndUpdate(req.body.questionId, { answered: false }).then(
+    result => {
+      Post.findByIdAndRemove(req.body.postId).then(post => {
+        console.log(post);
+        res.redirect("/");
+      });
+    }
+  );
 });
 
 router.post("/answer/:id", (req, res, next) => {

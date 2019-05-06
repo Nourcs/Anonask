@@ -10,5 +10,11 @@
 <div style="border:1px solid black; margin : 10px 0;padding :20px; width : 14.75%;">
     <h3>{{this.question}}</h3>
     <p>{{this.answer}}</p>
+    {{!-- <form action="/" method="POST"> --}}
+    <button type="submit" id="delete-post" questionId="{{this.questionId}}" postId="{{this._id}}"> Delete </button>
+    {{!-- </form> --}}
 </div>
 {{/each}}
+
+
+<script src="/javascripts/profile.js"></script>

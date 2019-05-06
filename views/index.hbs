@@ -9,7 +9,7 @@
 <a href="/account/people">People</a>
 <br>
 <br>
-<a href="/account/notifications">Notifications</a>
+<a href="/account/notifications" id="notifications">Notifications</a>
 <br>
 <br>
 <button id="logout">Log out</button>
@@ -23,3 +23,23 @@
 
 {{!-- Logout Scripts --}}
 <script src="/javascripts/logout.js"></script>
+
+<script>
+    axios.post("/notifications").then(res => {
+        if (res.data.total > 0) {
+            document.querySelector("#notifications").innerHTML = `Notifications ${res.data.total}`
+        } else {
+            document.querySelector("#notifications").innerHTML = "Notifications"
+        }
+    })
+    setInterval(() => {
+        axios.post("/notifications").then(res => {
+            if (res.data.total > 0) {
+                document.querySelector("#notifications").innerHTML = `Notifications ${res.data.total}`
+            } else {
+                document.querySelector("#notifications").innerHTML = "Notifications"
+            }
+        })
+    }, 2000)
+
+</script>
