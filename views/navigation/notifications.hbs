@@ -14,7 +14,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/account/notifications"><i class="fas fa-bell this"
-                    style="font-size : 24px;"></i></a>
+                    style="font-size : 24px;"></i><span class="badge badge-secondary" id="notifications"></span></a>
         </li>
         <li class="nav-item">
             <label class="nav-link" id="logout"><i class="fas fa-cog" style="font-size : 24px;"></i></label>
@@ -44,3 +44,22 @@
 </script>
 <script src="/javascripts/logout.js"></script>
 <link rel='stylesheet' href='/stylesheets/navbar.css' />
+
+<script>
+    axios.post("/notifications").then(res => {
+        if (res.data.total > 0) {
+            document.querySelector("#notifications").innerHTML = `${res.data.total}`
+        } else {
+            document.querySelector("#notifications").innerHTML = ''
+        }
+    })
+    setInterval(() => {
+        axios.post("/notifications").then(res => {
+            if (res.data.total > 0) {
+                document.querySelector("#notifications").innerHTML = `${res.data.total}`
+            } else {
+                document.querySelector("#notifications").innerHTML = ""
+            }
+        })
+    }, 2000)
+</script>

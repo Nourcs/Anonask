@@ -24,21 +24,6 @@
         window.location.href = "/signup"
     });
 
-    axios.post("/notifications").then(res => {
-        if (res.data.total > 0) {
-            document.querySelector("#notifications").innerHTML = `Notifications ${res.data.total}`
-        } else {
-            document.querySelector("#notifications").innerHTML = "Notifications"
-        }
-    })
-    setInterval(() => {
-        axios.post("/notifications").then(res => {
-            if (res.data.total > 0) {
-                document.querySelector("#notifications").innerHTML = `Notifications ${res.data.total}`
-            } else {
-                document.querySelector("#notifications").innerHTML = "Notifications"
-            }
-        })
-    }, 2000)
+
 
 </script>
