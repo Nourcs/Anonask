@@ -21,24 +21,107 @@
     </ul>
 </nav>
 
-<img src={{currentUser.profilePicture}} style="border-radius:100%;width:25%;" />
-<h1> {{currentUser.fullName}}</h1>
-
-<form action="profile/new/question" method="POST">
-    <h3>Ask Yourself</h3>
-    <input type='text' placeholder="What, When, Why ... Ask ..." name="question" />
-    <button type='submit'>Send</button>
-</form>
-{{#each posts}}
-<div style="border:1px solid black; margin : 10px 0;padding :20px; width : 14.75%;">
-    <h3>{{this.question}}</h3>
-    <p>{{this.answer}}</p>
-    {{!-- <form action="/" method="POST"> --}}
-    <button type="submit" id="delete-post" questionId="{{this.questionId}}" postId="{{this._id}}"> Delete </button>
-    {{!-- </form> --}}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container text-center">
+        <img src={{currentUser.profilePicture}} style="border-radius:100%; width :200px;"
+            class="img-thumbnail mx-auto d-block mb-3" />
+        <h1> {{currentUser.fullName}}</h1>
+        <p class="lead mb-0"><i class="fas fa-ellipsis-h" style="font-size : 30px;"></i></p>
+    </div>
 </div>
-{{/each}}
+<div class="container">
+    <div class="row">
+        {{!-- POSTS --}}
+        <div class="col order-last order-md-first">
+            <div class="card mx-auto mb-3" style="width:30rem;">
+                <div class="card-body">
+                    <h3>Ask Yourself</h3>
+                    <form action="profile/new/question" method="POST">
+                        <textarea type='text' placeholder="What, When, Why ... Ask ..." name="question"
+                            class="form-control"></textarea>
+                        <button type='submit' class="form-control btn btn-dark my-3">Send</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card mx-auto mb-3" style="width:30rem; border:none;">
+                <div class="row btn-group btn-group-toggle" data-toggle="buttons">
+                    <div class="col pr-0">
+                        <button type="button"
+                            style="border-right:none; border-top-right-radius: 0;border-bottom-right-radius:0;"
+                            class="btn btn-outline-dark btn-block mx-0 btn-sm active">Latest</button>
+                    </div>
+                    <div class="col pl-0">
+                        <button type="button"
+                            style="border-left:none; border-top-left-radius: 0;border-bottom-left-radius:0;"
+                            class="btn btn-outline-dark btn-block btn-sm">Latest</button>
+                    </div>
+                </div>
+
+            </div>
+            {{#each posts}}
+            <div class="card mx-auto mt-3" style="width:30rem;">
+                <div class="card-body">
+                    <h3>{{this.question}}</h3>
+                    <p class="lead">{{this.answer}}</p>
+                    <label id="like-post" questionId="{{this.questionId}}" postId="{{this._id}}" class="float-left"><i
+                            class="fas fa-heart" style="color:#cdcdd9; font-size : 24px;"></i>
+                    </label>
+                    <button type="submit" id="delete-post" questionId="{{this.questionId}}" postId="{{this._id}}"
+                        class="btn btn-danger btn-sm float-right"> Delete
+                    </button>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        {{!-- Details --}}
+        <div class="col">
+            <div class="card mx-auto mb-3" style="width:30rem;">
+                <div class="card-body">
+                    <div class=" row">
+                        <div class="col text-center">
+                            <h5>Posts</h5>
+                            <h5>0</h5>
+                        </div>
+                        <div class="col text-center">
+                            <h5>Likes</h5>
+                            <h5>0</h5>
+                        </div>
+                    </div>
+                    <div class="container mt-5">
+                        <label class="float-right small mt-2"><i class="fas fa-pen"></i> Edit
+                            Profile</label>
+                        <h4 class="mb-4">About Me</h4>
+                        <div class="d-flex">
+                            <label><i class="fas fa-user"></i></label>
+                            <p class="mx-3">Tell us something about yourself…</p>
+                        </div>
+                        <div class="d-flex">
+                            <label><i class="fas fa-map-marker-alt"></i></label>
+                            <p class="mx-3">Add location…</p>
+                        </div>
+                        <div class="d-flex">
+                            <label><i class="fas fa-link"></i></label>
+                            <p class="mx-3">Add links…</p>
+                        </div>
+                        <div class="d-flex">
+                            <label><i class="fas fa-hashtag"></i></label>
+                            <p class="mx-3">Add interests…</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <link rel='stylesheet' href='/stylesheets/navbar.css' />
 <script src="/javascripts/profile.js"></script>
 <script src="/javascripts/logout.js"></script>
+
+<style>
+    .fa-ellipsis-h:hover {
+        cursor: pointer;
+    }
+</style>

@@ -20,17 +20,36 @@
         </li>
     </ul>
 </nav>
-<h1>Inbox</h1>
+<div class="container">
+    <div class="card mx-auto mt-5 p-md-3 mb-5" style="width:75%;">
+        <div class="card-body">
+            <h3 class="card-title">Questions</h3>
+            <div class="card-subtitle mb-4 text-muted d-flex align-items-center">
+                <i class="fas fa-trash-alt"> </i>
+                <h6 class="mt-2 ml-3">Delete all question</h6>
+            </div>
+            {{!-- HERE --}}
+            {{#each questions}}
+            <div class="card mx-auto mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.question}}</h5>
+                    <form action="/profile/answer/{{this._id}}" method="POST">
+                        <input class="form-control" type="text" name="answer" placeholder="Write your answer." />
+                        <button type="submit" class="float-left  btn btn-primary mt-3"> Answer </button>
+                    </form>
+                    <button type="submit" id="delete-post" questionId="{{this._id}}"
+                        class="float-right btn btn-danger mt-3">
+                        Delete
+                    </button>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
 
-{{#each questions}}
-<h1>Question {{@index}} </h1>
-<h5>{{this.question}}</h5>
-<form action="/profile/answer/{{this._id}}" method="POST">
-    <input type="text" name="answer" placeholder="Write your answer." />
-    <button type="submit"> Answer </button>
-</form>
-<button type="submit" id="delete-post" questionId="{{this._id}}"> Delete </button>
-{{/each}}
+
+
 
 <script>
     let deleteBtns = document.querySelectorAll("#delete-post");
