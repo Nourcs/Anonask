@@ -33,7 +33,7 @@
     <div class="row">
         {{!-- POSTS --}}
         <div class="col order-last order-md-first">
-            <div class="card mx-auto mb-3" style="width:70vh;">
+            <div class="card mx-auto mb-3" style="">
                 <div class="card-body">
                     <h3>Ask Yourself</h3>
                     <form action="profile/new/question" method="POST">
@@ -43,7 +43,7 @@
                     </form>
                 </div>
             </div>
-            <div class="card mx-auto mb-3" style="width:70vh; border:none;">
+            <div class="card mx-auto mb-3" style=" border:none;">
                 <div class="row btn-group btn-group-toggle" data-toggle="buttons">
                     <div class="col pr-0">
                         <button type="button"
@@ -59,7 +59,7 @@
 
             </div>
             {{#each posts}}
-            <div class="card mx-auto mt-3" style="width:70vh;">
+            <div class="card mx-auto mt-3" style="">
                 <div class="card-body">
                     <h3>{{this.question}}</h3>
                     <p class="lead">{{this.answer}}</p>
@@ -75,7 +75,7 @@
         </div>
         {{!-- Details --}}
         <div class="col">
-            <div class="card mx-auto mb-3" style="width:70vh;">
+            <div class="card mx-auto mb-3" style="">
                 <div class="card-body">
                     <div class=" row">
                         <div class="col text-center">
