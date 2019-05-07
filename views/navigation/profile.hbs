@@ -16,8 +16,14 @@
             <a class="nav-link" href="/account/notifications"><i class="fas fa-bell" style="font-size : 24px;"></i><span
                     class="badge badge-secondary" id="notifications"></span></a>
         </li>
-        <li class="nav-item">
-            <label class="nav-link" id="logout"><i class="fas fa-cog" style="font-size : 24px;"></i></label>
+        <li class="nav-item dropdown">
+            <label class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog" style="font-size : 24px;"></i></label>
+            <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown"
+                style="left : -90px; top : 50px; border: none;">
+                <a class="dropdown-item btn-light" href="#">Settings</a>
+                <a class="dropdown-item btn-light" href="#" id="logout">Log Out</a>
+            </div>
         </li>
     </ul>
 </nav>

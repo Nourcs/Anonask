@@ -40,7 +40,7 @@ router.post("/account/people/:id/newQuestion", (req, res, next) => {
     let to = user;
     let question = req.body.question;
     Question.create({ from, to, question }).then(question => {});
-    res.redirect("/");
+    res.redirect("./");
   });
 });
 

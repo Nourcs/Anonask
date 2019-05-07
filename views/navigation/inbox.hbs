@@ -16,8 +16,14 @@
             <a class="nav-link" href="/account/notifications"><i class="fas fa-bell" style="font-size : 24px;"></i><span
                     class="badge badge-secondary" id="notifications"></span></a>
         </li>
-        <li class="nav-item">
-            <label class="nav-link" id="logout"><i class="fas fa-cog" style="font-size : 24px;"></i></label>
+        <li class="nav-item dropdown">
+            <label class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog" style="font-size : 24px;"></i></label>
+            <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown"
+                style="left : -90px; top : 50px; border: none;">
+                <a class="dropdown-item btn-light" href="#">Settings</a>
+                <a class="dropdown-item btn-light" href="#" id="logout">Log Out</a>
+            </div>
         </li>
     </ul>
 </nav>
@@ -25,7 +31,8 @@
     <div class="card mx-auto mt-5 p-md-3 mb-5" style="">
         <div class="card-body">
             <h3 class="card-title">Questions</h3>
-            <div class="card-subtitle mb-4 text-muted d-flex align-items-center">
+            <div class="card-subtitle mb-4 text-muted d-inline-flex align-items-center" id="delete-all"
+                userId="{{user}}">
                 <i class="fas fa-trash-alt"> </i>
                 <h6 class="mt-2 ml-3">Delete all question</h6>
             </div>
@@ -86,3 +93,20 @@
         })
     }, 2000)
 </script>
+
+<style>
+    #delete-all:hover {
+        cursor: pointer;
+    }
+</style>
+{{#if questions}}
+<script>
+    document.querySelector('#delete-all').addEventListener("click", e => {
+        console.log("CLICKED")
+        axios.post("/account/inbox/deleteAll").then(res => {
+            console.log(res)
+            location.reload();
+        })
+    })
+</script>
+{{/if}}

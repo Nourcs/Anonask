@@ -17,8 +17,14 @@
             <a class="nav-link" href="/account/notifications"><i class="fas fa-bell" style="font-size : 24px;"></i><span
                     class="badge badge-secondary" id="notifications"></span></a>
         </li>
-        <li class="nav-item">
-            <label class="nav-link" id="logout"><i class="fas fa-cog" style="font-size : 24px;"></i></label>
+        <li class="nav-item dropdown">
+            <label class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog" style="font-size : 24px;"></i></label>
+            <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown"
+                style="left : -90px; top : 50px; border: none;">
+                <a class="dropdown-item btn-light" href="#">Settings</a>
+                <a class="dropdown-item btn-light" href="#" id="logout">Log Out</a>
+            </div>
         </li>
     </ul>
 </nav>
@@ -39,7 +45,7 @@
             <div class="card mx-auto mb-3" style="">
                 <div class="card-body">
                     <h3>Ask {{user.fullName}}</h3>
-                    <form action="{{user._id}}/newQuestion" method="POST">
+                    <form action="/account/people/{{user._id}}/newQuestion" method="POST">
                         <textarea type='text' placeholder="What, When, Why ... Ask ..." name="question"
                             class="form-control"></textarea>
                         <button type='submit' class="form-control btn btn-dark my-3">Send</button>
@@ -69,9 +75,7 @@
                     <label id="like-post" questionId="{{this.questionId}}" postId="{{this._id}}" class="float-left"><i
                             class="fas fa-heart" style="color:#cdcdd9; font-size : 24px;"></i>
                     </label>
-                    <button type="submit" id="delete-post" questionId="{{this.questionId}}" postId="{{this._id}}"
-                        class="btn btn-danger btn-sm float-right"> Delete
-                    </button>
+
                 </div>
             </div>
             {{/each}}

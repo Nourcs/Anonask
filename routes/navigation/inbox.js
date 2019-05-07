@@ -22,4 +22,20 @@ router.post("/inbox/delete", (req, res, next) => {
   });
 });
 
+router.post("/inbox/deleteAll", (req, res, next) => {
+  Question.find({ to: req.cookies.currentUser._id, answered: false }).then(
+    questions => {
+      if (questions) {
+        for (let i = 0; i < questions.length; i++) {
+          Question.findByIdAndDelete(questions[i]._id).then(response => {
+            console.log(response);
+            if (i === questions.length - 1) {
+              res.redirect("./");
+            }
+          });
+        }
+      }
+    }
+  );
+});
 module.exports = router;
