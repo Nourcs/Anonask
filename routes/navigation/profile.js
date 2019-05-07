@@ -42,7 +42,7 @@ router.post("/answer/:id", (req, res, next) => {
     let { from, to, question } = result;
     let answer = req.body.answer;
     Post.create({ from, to, questionId: result, answer, question });
-    res.redirect("/");
+    res.redirect("../../account/inbox");
   });
 });
 module.exports = router;
