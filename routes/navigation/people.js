@@ -4,6 +4,7 @@ var cookieParser = require("cookie-parser");
 
 var User = require("../../models/user");
 var Question = require("../../models/questions");
+var Post = require("../../models/posts");
 var mongoose = require("mongoose");
 
 // Old User Log In
@@ -25,7 +26,11 @@ router.get("/account/people/:id", (req, res, next) => {
     res.redirect("/profile");
   }
   User.findById(req.params.id).then(user => {
-    res.render("navigation/peopleProfile", { user });
+    Post.find({ to: req.params.id })
+      .sort({ createdAt: -1 })
+      .then(posts => {
+        res.render("navigation/peopleProfile", { user, posts });
+      });
   });
 });
 

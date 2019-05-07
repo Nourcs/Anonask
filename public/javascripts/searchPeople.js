@@ -9,11 +9,16 @@ document.querySelector("#search-people").addEventListener("input", e => {
       if (arr.length > 0) {
         let str = "";
         for (let i = 0; i < arr.length; i++) {
-          str += `
-                <br><div> <a href="/account/people/${arr[i]._id}">${
+          str += ` <div class="card mx-auto mb-3">
+          <div class="card-body d-flex align-items-center">
+              <img style="width : 75px; height : 75px; border-radius : 100%;"
+                  src="${arr[i].profilePicture}" />
+              <h4 class="ml-3"><a href="/account/people/${arr[i]._id}">${
             arr[i].fullName
-          }</a> </div>
-            `;
+          }</a></h4>
+
+          </div>
+      </div>`;
         }
         document.querySelector("#users").innerHTML = str;
       } else {

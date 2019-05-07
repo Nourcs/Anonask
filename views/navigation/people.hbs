@@ -21,11 +21,23 @@
         </li>
     </ul>
 </nav>
-<h1>People</h1>
 
-<input type="text" name="search" placeholder="Search for People" id="search-people" />
-<div id="users"></div>
+<div class="container">
+    <div class="card mx-auto mt-5 p-md-3 mb-5" style="width:75%">
+        <div class="card-body">
+            <h3 class="card-title">People</h3>
+            <form>
+                <input type="text" name="search" placeholder="Search for People" id="search-people"
+                    class="form-control" />
+            </form>
+            <div id="users" class="mt-3">
 
-<script src="/javascripts/searchPeople.js"></script>
-<script src="/javascripts/logout.js"></script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/javascripts/searchPeople.js"> </script>
+<script src="/javascripts/logout.js">
+</script>
 <link rel='stylesheet' href='/stylesheets/navbar.css' />

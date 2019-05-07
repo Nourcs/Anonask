@@ -21,15 +21,24 @@
         </li>
     </ul>
 </nav>
-<h1>Notifications</h1>
 
-{{#each questions}}
-<div
-    style="border:1px solid black; margin : 10px 0;padding :20px; width : 14.75%; {{#if this.seen}}{{else}} background-color: rgba(0,0,0,0.5) {{/if}}">
-    <h3>You have a new Question: "{{this.question}}"</h3>
+<div class="container">
+    <div class="card mx-auto mt-5 p-md-3 mb-5" style="">
+        <div class="card-body">
+            <h3 class="card-title">Notifications</h3>
+            {{!-- HERE --}}
+            {{#each questions}}
+            <div class="card mx-auto mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{#if this.seen}}{{else}} New{{/if}} Question : <i
+                            style="{{#if this.seen}}{{else}} color:rgba(231, 71, 71, 0.8); {{/if}}">"{{this.question}}"</i>
+                    </h5>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
 </div>
-{{/each}}
-
 <script>
     axios.post("/account/notifications");
 </script>
