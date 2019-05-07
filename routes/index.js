@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var Question = require("../models/questions");
+var hbs = require("hbs");
 
 var loginRoute = require("./auth/login");
 var signupRoute = require("./auth/signup");
@@ -11,14 +12,8 @@ var notificationsRoute = require("./navigation/notifications");
 var peopleRoute = require("./navigation/people");
 var authMiddleware = require("./authMiddleware");
 
-router.get("/", function(req, res, next) {
-  let currentUser = null;
-  if (req.cookies) {
-    currentUser = req.cookies.currentUser;
-  }
-  res.render("index", { currentUser });
-
-  // res.json({ currentUser });
+router.get("/", authMiddleware.homePage, function(req, res, next) {
+  res.render("index");
 });
 
 router.post("/notifications", (req, res, next) => {

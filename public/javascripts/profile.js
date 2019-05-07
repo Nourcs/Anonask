@@ -8,7 +8,7 @@ for (let i = 0; i < deleteBtns.length; i++) {
     );
     if (confirm) {
       axios.post("/profile/delete/", { postId, questionId }).then(() => {
-        window.location.href = "/profile";
+        window.location.href = "./";
       });
     }
   });

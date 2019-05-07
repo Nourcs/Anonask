@@ -1,30 +1,29 @@
-<h1>Anonask</h1>
-{{#if currentUser}}
-<a href="/profile">Profile</a>
-<br>
-<br>
-<a href="/account/inbox">Inbox</a>
-<br>
-<br>
-<a href="/account/people">People</a>
-<br>
-<br>
-<a href="/account/notifications" id="notifications">Notifications</a>
-<br>
-<br>
-<button id="logout">Log out</button>
-{{else }}
-<a href="/login">Log in</a>
-<br>
-<br>
-<a href="/signup">Sign up</a>
-{{/if}}
+<nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1 mx-auto">Anonask</span>
+</nav>
 
-
-{{!-- Logout Scripts --}}
-<script src="/javascripts/logout.js"></script>
+<div class="jumbotron jumbotron-fluid home">
+    <div class="container justify-content-start mt-5">
+        <p class="lead mx-auto text-center" style="width: 300px;">Curious? <b>Just ask!</b></p>
+        <p class="lead mx-auto text-center" style="width: 300px;"><b>Openly or anonymously.</b></p>
+        <div class='mx-auto d-flex justify-content-center mb-2 mt-5' style="width: 30%;">
+            <button class='btn btn-light login-btn'>Log in</button>
+        </div>
+        <div class='mx-auto  d-flex justify-content-center m-3' style="width: 30%;">
+            <button class='btn btn-outline-light signup-btn'>Sign up</button>
+        </div>
+    </div>
+</div>
+<link rel='stylesheet' href='/stylesheets/index.css' />
 
 <script>
+    document.querySelector('body > div > div > div:nth-child(3) > button').addEventListener('click', (e) => {
+        window.location.href = "/login"
+    });
+    document.querySelector('body > div > div > div.mx-auto.d-flex.justify-content-center.m-3 > button').addEventListener('click', (e) => {
+        window.location.href = "/signup"
+    });
+
     axios.post("/notifications").then(res => {
         if (res.data.total > 0) {
             document.querySelector("#notifications").innerHTML = `Notifications ${res.data.total}`

@@ -24,11 +24,11 @@ document.querySelector("#google-signin").addEventListener("click", () => {
       console.log(result);
       if (result.additionalUserInfo.isNewUser) {
         axios.post("/login/provider", result).then(() => {
-          window.location.href = "/";
+          window.location.href = "/profile";
         });
       } else {
         axios.post("/login", result).then(() => {
-          window.location.href = "/";
+          window.location.href = "/profile";
         });
       }
     });
@@ -42,11 +42,11 @@ document.querySelector("#facebook-signin").addEventListener("click", () => {
     .then(result => {
       if (result.additionalUserInfo.isNewUser) {
         axios.post("/login/provider", result).then(() => {
-          window.location.href = "/";
+          window.location.href = "/profile";
         });
       } else {
         axios.post("/login", result).then(() => {
-          window.location.href = "/";
+          window.location.href = "/profile";
         });
       }
     });

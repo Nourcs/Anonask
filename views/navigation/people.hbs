@@ -1,6 +1,31 @@
+<nav class="navbar navbar-expand navbar-light bg-light">
+    <a class="navbar-brand mb-0 h1" href="/">Anonask</a>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="/account/inbox"><i class="fas fa-question-circle"
+                    style="font-size : 24px;"></i></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/profile"><i class="fas fa-user-circle" style="font-size : 24px;"></i><span
+                    class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/account/people"><i class="fas fa-user-friends this"
+                    style="font-size : 24px;"></i></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/account/notifications"><i class="fas fa-bell" style="font-size : 24px;"></i></a>
+        </li>
+        <li class="nav-item">
+            <label class="nav-link" id="logout"><i class="fas fa-cog" style="font-size : 24px;"></i></label>
+        </li>
+    </ul>
+</nav>
 <h1>People</h1>
 
 <input type="text" name="search" placeholder="Search for People" id="search-people" />
 <div id="users"></div>
 
 <script src="/javascripts/searchPeople.js"></script>
+<script src="/javascripts/logout.js"></script>
+<link rel='stylesheet' href='/stylesheets/navbar.css' />

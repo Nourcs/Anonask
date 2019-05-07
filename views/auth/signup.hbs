@@ -1,32 +1,63 @@
-<h1>Sign Up</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <div class="d-flex mx-auto">
+        <a class="navbar-brand mb-0 h1" href="/">Anonask</a>
+        <div class="navbar-nav d-flex mx-5">
+            <label class="nav-item nav-link active mb-0 text-dark"><b>Sign up</b> <span
+                    class=" sr-only">(current)</span></label>
+        </div>
+        <div class="navbar-nav d-flex">
+            <a class="nav-item nav-link" href="/login">Log in</a>
 
-<button type="submit" id="facebook-signin">Facebook</button>
-<br>
-<button type="submit" id='google-signin'>Google</button>
-<br>
-<div>
-    <input type="email" name="email" placeholder="E-mail" id="email" />
-</div>
-<div>
-    <input type=" text" name="fullname" placeholder="Full Name" />
-</div>
-<div>
-    <input type="text" name="usernmame" placeholder="Username" />
+        </div>
 
-</div>
-<div>
-    <label>Birthday</label><br>
-    <input type="date" name="birthdate">
-</div>
-<div>
-    <label>Gender</label><br>
-    <select name='gender'>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-    </select>
-</div>
+    </div>
+</nav>
 
-<input type="password" name="password" placeholder="Password" id="password" />
-<button type="submit" id='email-signup'>Sign up</button>
+
+<div class="row mb-5 my-4 ml-1">
+    <div class="card mx-auto mt-5 col-sm-7 col-md-6 col-lg-4 my-5 bg-light" style="width:75%;">
+        <div class="card-body">
+            <hr class="hr-text" data-content="Sign Up With">
+            <div class="form-group">
+                <button type="submit" id="facebook-signin" class="btn btn-dark mb-3"
+                    style="width:100%;">Facebook</button>
+                <button type="submit" id='google-signin' class="btn btn-dark" style="width:100%;">Google</button>
+            </div>
+
+            <hr class="hr-text" data-content="Or">
+
+            <form class="mx-2 mt-4">
+
+                <div class="form-group">
+                    <input type=" text" name="fullname" placeholder="Full Name" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="E-mail" id="email" class="form-control" required />
+                </div>
+                <div class='form-group'>
+                    <input type="password" name="password" placeholder="Password" id="password" class="form-control"
+                        required />
+                </div>
+                <div class='form-group'>
+                    <label>Birthday</label><br>
+                    <input class="form-control" type="date" value="2001-05-05" id="example-date-input" />
+                </div>
+                <div class='form-group'>
+                    <label>Gender</label><br>
+                    <select class="form-control">
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                </div>
+
+
+                <label class=" small ml-1">By signing up you agree to our <a href="#">Terms</a> and
+                    <a href="#">Privacy policy</a></label>
+            </form>
+            <button id='email-signup' class="btn btn-dark my-3" style="width:100%;">Sign up</button>
+        </div>
+    </div>
+</div>
 
 <script src="javascripts/signup.js"></script>
+<link rel='stylesheet' href='/stylesheets/signup.css' />

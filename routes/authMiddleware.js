@@ -20,5 +20,16 @@ module.exports = {
     } else {
       res.render("error", { message: "Please Log in" });
     }
+  },
+  homePage: function(req, res, next) {
+    let currentUser = null;
+    if (req.cookies) {
+      currentUser = req.cookies.currentUser;
+    }
+    if (currentUser) {
+      res.redirect("/profile");
+    } else {
+      next();
+    }
   }
 };

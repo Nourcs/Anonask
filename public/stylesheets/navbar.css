@@ -1,0 +1,11 @@
+.this {
+  color: #1871c2;
+}
+
+i:hover {
+  color: #1871c2;
+}
+
+#logout:hover {
+  cursor: pointer;
+}

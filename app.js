@@ -3,7 +3,6 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-
 var indexRouter = require("./routes/index");
 
 // Firebase
@@ -12,7 +11,6 @@ const config = require("./config/keys");
 
 firebase.initializeApp(config);
 // End Firebase
-
 var app = express();
 
 // Mongoose
@@ -34,7 +32,7 @@ mongoose
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
-
+//hbs.registerPartial("Navbar", "{{navigation/navbar}}");
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

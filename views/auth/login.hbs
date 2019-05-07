@@ -1,11 +1,43 @@
-<h1>Log In</h1>
-<input type="email" name="email" placeholder="E-mail" id="email" />
-<input type="password" name="password" placeholder="Password" id="password" />
-<button type="submit" id="email-signin">Log in</button>
-<br>
-<button type="submit" id="facebook-signin">Facebook</button>
-<br>
-<button type="submit" id='google-signin'>Google</button>
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <div class="d-flex mx-auto">
+        <a class="navbar-brand mb-0 h1" href="/">Anonask</a>
+        <div class="navbar-nav d-flex mx-5">
+            <label class="nav-item nav-link active mb-0"><b>Log in </b><span class=" sr-only">(current)</span></label>
+        </div>
+        <div class="navbar-nav d-flex">
+            <a class="nav-item nav-link" href="/signup">Sign up</a>
+        </div>
+    </div>
+</nav>
 
-{{!-- Login Scripts --}}
+<div class="row mt-4">
+    <div class="card mx-auto mt-5 col-sm-7 col-md-6 col-lg-4 bg-light" style="width:75%;">
+        <div class="card-body">
+            <form class="mx-2 mt-4">
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="E-mail" id="email" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" placeholder="Password" id="password" class="form-control"
+                        required />
+                </div>
+
+                <div class="form-check align-items-center ">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label small" for="exampleCheck1">Remember Me</label>
+                    <a href="#" class='float-right small'> Forgot Password?</a>
+                </div>
+            </form>
+            <button id="email-signin" class="btn btn-dark my-3" style="width:100%;">Log in</button>
+            <hr class="hr-text" data-content="Login With">
+            <div class="form-group">
+                <button type="submit" id="facebook-signin" class="btn btn-dark my-3"
+                    style="width:100%;">Facebook</button>
+                <button type="submit" id='google-signin' class="btn btn-dark" style="width:100%;">Google</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="/javascripts/login.js"></script>
+<link rel='stylesheet' href='/stylesheets/login.css' />

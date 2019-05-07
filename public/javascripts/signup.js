@@ -11,7 +11,7 @@ document.querySelector("#email-signup").addEventListener("click", () => {
     .then(user => {
       if (user.additionalUserInfo.isNewUser) {
         axios.post("/signup/email", user).then(() => {
-          window.location.href = "/";
+          window.location.href = "/profile";
         });
       }
     });
@@ -26,11 +26,11 @@ document.querySelector("#google-signin").addEventListener("click", () => {
       console.log(result);
       if (result.additionalUserInfo.isNewUser) {
         axios.post("/signup/provider", result).then(() => {
-          window.location.href = "/";
+          window.location.href = "/profile";
         });
       } else {
         axios.post("/login", result).then(() => {
-          window.location.href = "/";
+          window.location.href = "/profile";
         });
       }
     });
@@ -44,11 +44,11 @@ document.querySelector("#facebook-signin").addEventListener("click", () => {
     .then(result => {
       if (result.additionalUserInfo.isNewUser) {
         axios.post("/signup/provider", result).then(() => {
-          window.location.href = "/";
+          window.location.href = "/profile";
         });
       } else {
         axios.post("/login", result).then(() => {
-          window.location.href = "/";
+          window.location.href = "/profile";
         });
       }
     });
