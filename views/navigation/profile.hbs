@@ -87,7 +87,7 @@
                     <div class=" row">
                         <div class="col text-center">
                             <h5>Posts</h5>
-                            <h5>0</h5>
+                            <h5 id="n-posts"></h5>
                         </div>
                         <div class="col text-center">
                             <h5>Likes</h5>
@@ -149,3 +149,9 @@
         cursor: pointer;
     }
 </style>
+
+<script>
+    axios.post("/profile/number-of-posts").then(res => {
+        document.querySelector("#n-posts").innerText = res.data.npost;
+    })
+</script>

@@ -45,4 +45,10 @@ router.post("/answer/:id", (req, res, next) => {
     res.redirect("../../account/inbox");
   });
 });
+
+router.post("/number-of-posts", (req, res, next) => {
+  Post.find({ to: req.cookies.currentUser._id }).then(posts => {
+    res.json({ npost: posts.length });
+  });
+});
 module.exports = router;

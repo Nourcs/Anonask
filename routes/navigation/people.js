@@ -44,4 +44,10 @@ router.post("/account/people/:id/newQuestion", (req, res, next) => {
   });
 });
 
+router.post("/account/people/:id/number-of-posts", (req, res, next) => {
+  Post.find({ to: req.params.id }).then(posts => {
+    res.json({ npost: posts.length });
+  });
+});
+
 module.exports = router;
