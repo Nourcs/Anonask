@@ -5,6 +5,7 @@ var cookieParser = require("cookie-parser");
 var Question = require("../../models/questions");
 var User = require("../../models/user");
 var Post = require("../../models/posts");
+var Like = require("../../models/likes");
 
 var mongoose = require("mongoose");
 
@@ -50,5 +51,40 @@ router.post("/number-of-posts", (req, res, next) => {
   Post.find({ to: req.cookies.currentUser._id }).then(posts => {
     res.json({ npost: posts.length });
   });
+});
+
+router.post("/:id/like", (req, res, next) => {
+  Like.findOne({ postId: req.params.id }).then(like => {
+    if (like === null) {
+      Post.findById(req.params.id).then(post => {
+        let from = req.cookies.currentUser;
+        let to = req.cookies.currentUser;
+        Like.create({ from, to, postId: post }).then(like => {});
+        res.json(like);
+      });
+    } else {
+      Like.findOneAndRemove({ postId: req.params.id }).then(deleted => {
+        res.json(deleted);
+      });
+    }
+  });
+});
+
+router.post("/:id", (req, res, next) => {
+  Like.findOne({ postId: req.params.id }).then(like => {
+    if (like) {
+      res.json({ liked: true });
+    } else {
+      res.json({ liked: false });
+    }
+  });
+});
+
+router.post("/:id/total-likes", (req, res, next) => {
+  Like.find({ to: req.cookies.currentUser, postId: req.params.id }).then(
+    likes => {
+      res.json({ nlikes: likes.length });
+    }
+  );
 });
 module.exports = router;
