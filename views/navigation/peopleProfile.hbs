@@ -93,7 +93,7 @@
                         </div>
                         <div class="col text-center">
                             <h5>Likes</h5>
-                            <h5>0</h5>
+                            <h5 id="n-likes"></h5>
                         </div>
                     </div>
                     <div class="container mt-5">
@@ -149,6 +149,10 @@
     axios.post("{{user._id}}/number-of-posts").then(res => {
         document.querySelector("#n-posts").innerText = res.data.npost;
     })
+    axios.post("{{user._id}}/number-of-likes").then(res => {
+        console.log(res)
+        document.querySelector("#n-likes").innerText = res.data.nlike;
+    })
 </script>
 <style>
     .liked {
@@ -170,13 +174,11 @@
         })
 
         axios.post(`{{user._id}}/${likes[i].attributes.postid.value}`).then(res => {
-            console.log(res)
             if (res.data.liked) {
                 likes[i].classList.add("liked");
             }
         })
         likes[i].addEventListener('click', e => {
-            // console.log(e.target.attributes.postid.value)
             e.target.classList.toggle("liked");
             axios.post(`{{user._id}}/${e.target.attributes.postid.value}/like`).then((e) => {
                 axios.post(`{{user._id}}/${likes[i].attributes.postid.value}/total-likes`).then(res => {

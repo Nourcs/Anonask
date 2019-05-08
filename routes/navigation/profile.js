@@ -52,6 +52,11 @@ router.post("/number-of-posts", (req, res, next) => {
     res.json({ npost: posts.length });
   });
 });
+router.post("/number-of-likes", (req, res, next) => {
+  Like.find({ to: req.cookies.currentUser._id }).then(likes => {
+    res.json({ nlike: likes.length });
+  });
+});
 
 router.post("/:id/like", (req, res, next) => {
   Like.findOne({

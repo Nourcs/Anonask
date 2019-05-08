@@ -50,6 +50,12 @@ router.post("/account/people/:id/number-of-posts", (req, res, next) => {
   });
 });
 
+router.post("/account/people/:id/number-of-likes", (req, res, next) => {
+  Like.find({ to: req.params.id }).then(likes => {
+    res.json({ nlike: likes.length });
+  });
+});
+
 router.post("/account/people/:userId/:postId/like", (req, res, next) => {
   User.findById(req.params.userId).then(user => {
     Like.findOne({
