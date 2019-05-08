@@ -16,7 +16,9 @@ router.get("/", authMiddleware.currentUser, (req, res, next) => {
 // Sign up with Email
 router.post("/email", (req, res, next) => {
   let { email, uid } = req.body.user;
-  User.create({ email, uid }).then(user => {
+  let fullName = req.body.fullname;
+  // console.log(req.body.user);
+  User.create({ fullName, email, uid }).then(user => {
     res.cookie("currentUser", cookieParser.JSONCookies(user)).redirect("/");
   });
 });
