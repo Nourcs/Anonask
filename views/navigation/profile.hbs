@@ -171,9 +171,6 @@
 <script>
     let likes = document.querySelectorAll('#like');
     let totalLikes = document.querySelectorAll('#total-likes');
-    console.log(totalLikes)
-
-
 
     for (let i = 0; i < likes.length; i++) {
         axios.post(`/profile/${likes[i].attributes.postid.value}/total-likes`).then(res => {

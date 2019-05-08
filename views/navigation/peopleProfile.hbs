@@ -73,7 +73,9 @@
                     <h3>{{this.question}}</h3>
                     <p class="lead">{{this.answer}}</p>
                     <label id="like-post" questionId="{{this.questionId}}" postId="{{this._id}}" class="float-left"><i
-                            class="fas fa-heart" style="color:#cdcdd9; font-size : 24px;"></i>
+                            class="fas fa-heart" style="color:#d9cdcf; font-size : 24px;" id="like"
+                            postId="{{this._id}}"></i><span class="badge badge-secondary bg-light text-secondary"
+                            id="total-likes"></span>
                     </label>
 
                 </div>
@@ -147,4 +149,45 @@
     axios.post("{{user._id}}/number-of-posts").then(res => {
         document.querySelector("#n-posts").innerText = res.data.npost;
     })
+</script>
+<style>
+    .liked {
+        color: #bd2130 !important;
+    }
+
+    #like:hover {
+        cursor: pointer;
+    }
+</style>
+<script>
+    let likes = document.querySelectorAll('#like');
+    let totalLikes = document.querySelectorAll('#total-likes');
+
+    for (let i = 0; i < likes.length; i++) {
+        axios.post(`{{user._id}}/${likes[i].attributes.postid.value}/total-likes`).then(res => {
+            if (res.data.nlikes !== 0)
+                totalLikes[i].innerText = res.data.nlikes
+        })
+
+        axios.post(`{{user._id}}/${likes[i].attributes.postid.value}`).then(res => {
+            console.log(res)
+            if (res.data.liked) {
+                likes[i].classList.add("liked");
+            }
+        })
+        likes[i].addEventListener('click', e => {
+            // console.log(e.target.attributes.postid.value)
+            e.target.classList.toggle("liked");
+            axios.post(`{{user._id}}/${e.target.attributes.postid.value}/like`).then((e) => {
+                axios.post(`{{user._id}}/${likes[i].attributes.postid.value}/total-likes`).then(res => {
+                    if (res.data.nlikes !== 0) {
+                        totalLikes[i].innerText = res.data.nlikes
+                    } else {
+                        totalLikes[i].innerText = ''
+
+                    }
+                })
+            })
+        })
+    }
 </script>

@@ -54,7 +54,11 @@ router.post("/number-of-posts", (req, res, next) => {
 });
 
 router.post("/:id/like", (req, res, next) => {
-  Like.findOne({ postId: req.params.id }).then(like => {
+  Like.findOne({
+    postId: req.params.id,
+    from: req.cookies.currentUser,
+    to: req.cookies.currentUser
+  }).then(like => {
     if (like === null) {
       Post.findById(req.params.id).then(post => {
         let from = req.cookies.currentUser;
@@ -63,7 +67,11 @@ router.post("/:id/like", (req, res, next) => {
         res.json(like);
       });
     } else {
-      Like.findOneAndRemove({ postId: req.params.id }).then(deleted => {
+      Like.findOneAndRemove({
+        postId: req.params.id,
+        from: req.cookies.currentUser,
+        to: req.cookies.currentUser
+      }).then(deleted => {
         res.json(deleted);
       });
     }
@@ -71,7 +79,11 @@ router.post("/:id/like", (req, res, next) => {
 });
 
 router.post("/:id", (req, res, next) => {
-  Like.findOne({ postId: req.params.id }).then(like => {
+  Like.findOne({
+    postId: req.params.id,
+    from: req.cookies.currentUser,
+    to: req.cookies.currentUser
+  }).then(like => {
     if (like) {
       res.json({ liked: true });
     } else {
@@ -81,10 +93,12 @@ router.post("/:id", (req, res, next) => {
 });
 
 router.post("/:id/total-likes", (req, res, next) => {
-  Like.find({ to: req.cookies.currentUser, postId: req.params.id }).then(
-    likes => {
-      res.json({ nlikes: likes.length });
-    }
-  );
+  Like.find({
+    to: req.cookies.currentUser,
+    postId: req.params.id
+  }).then(likes => {
+    res.json({ nlikes: likes.length });
+  });
 });
+
 module.exports = router;
