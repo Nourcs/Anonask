@@ -180,13 +180,10 @@
             if (res.data.nlikes !== 0)
                 totalLikes[i].innerText = res.data.nlikes
         })
+
         axios.post(`/profile/${likes[i].attributes.postid.value}`).then(res => {
             if (res.data.liked) {
                 likes[i].classList.add("liked");
-                axios.post(`/profile/${likes[i].attributes.postid.value}/total-likes`).then(res => {
-                    if (res.data.nlikes !== 0)
-                        totalLikes[i].innerText = res.data.nlikes
-                })
             }
         })
         likes[i].addEventListener('click', e => {
@@ -194,8 +191,12 @@
             e.target.classList.toggle("liked");
             axios.post(`/profile/${e.target.attributes.postid.value}/like`).then(res => {
                 axios.post(`/profile/${likes[i].attributes.postid.value}/total-likes`).then(res => {
-                    if (res.data.nlikes !== 0)
+                    if (res.data.nlikes !== 0) {
                         totalLikes[i].innerText = res.data.nlikes
+                    } else {
+                        totalLikes[i].innerText = ''
+
+                    }
                 })
             })
 
