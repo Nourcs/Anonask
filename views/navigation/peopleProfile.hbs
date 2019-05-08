@@ -41,13 +41,13 @@
 <div class="container">
     <div class="row">
         {{!-- POSTS --}}
-        <div class="col order-last order-md-first">
+        <div class="col-sm order-last order-md-first">
             <div class="card mx-auto mb-3" style="">
                 <div class="card-body">
                     <h3>Ask {{user.fullName}}</h3>
                     <form action="/account/people/{{user._id}}/newQuestion" method="POST">
-                        <textarea type='text' placeholder="What, When, Why ... Ask ..." name="question"
-                            class="form-control"></textarea>
+                        <input type='text' placeholder="What, When, Why ... Ask ..." name="question"
+                            class="form-control"></input>
                         <button type='submit' class="form-control btn btn-dark my-3">Send</button>
                     </form>
                 </div>
