@@ -26,10 +26,6 @@ router.post("/showPeople", (req, res, next) => {
         .skip(random)
         .exec(function(err, result) {
           users.push(result);
-          // if (users.indexOf(result) >= 0) {
-          //   users.splice(users.indexOf(result), 1);
-          //   i--;
-          // }
           if (users.length === 10) {
             res.json(users);
           }

@@ -4,6 +4,8 @@
 
 <div class="jumbotron jumbotron-fluid home">
     <div class="container justify-content-start mt-5">
+        <img src='https://d1muxuiltlupn6.cloudfront.net/assets/owlcat-look-c5bf218fe8bfef6e2d2c1232ead722230299cc78789c2642fd6bb39de0a3bb92.gif'
+            class="d-block mx-auto mb-4" style="height : 50px; margin-top: -50px;" />
         <p class="lead mx-auto text-center" style="width: 300px;">Curious? <b>Just ask!</b></p>
         <p class="lead mx-auto text-center" style="width: 300px;"><b>Openly or anonymously.</b></p>
         <div class='mx-auto d-flex justify-content-center mb-2 mt-5' style="width: 30%;">
@@ -15,13 +17,13 @@
     </div>
 </div>
 <div class="container">
-    <div class="row mx-3">
+    <div class="row mx-5">
         <div class="col" id="people"></div>
         <div class="col" id="people"></div>
         <div class="col" id="people"></div>
         <div class="col" id="people"></div>
-        <div class="col d-none d-ms-block" id="people"></div>
-        <div class="col d-none d-ms-block" id="people"></div>
+        <div class="col" id="people"></div>
+        <div class="col  d-none d-ms-block" id="people"></div>
         <div class="col d-none d-md-block" id="people"></div>
         <div class="col d-none d-md-block" id="people"></div>
         <div class="col d-none d-md-block" id="people"></div>
@@ -33,10 +35,10 @@
 
 <script>
 
-    document.querySelector('body > div > div > div:nth-child(3) > button').addEventListener('click', (e) => {
+    document.querySelector("body > div.jumbotron.jumbotron-fluid.home > div > div.mx-auto.d-flex.justify-content-center.mb-2.mt-5 > button").addEventListener('click', (e) => {
         window.location.href = "/login"
     });
-    document.querySelector('body > div > div > div.mx-auto.d-flex.justify-content-center.m-3 > button').addEventListener('click', (e) => {
+    document.querySelector("body > div.jumbotron.jumbotron-fluid.home > div > div.mx-auto.d-flex.justify-content-center.m-3 > button").addEventListener('click', (e) => {
         window.location.href = "/signup"
     });
     let users = {};
