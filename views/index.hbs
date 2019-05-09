@@ -14,16 +14,39 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="row mx-3">
+        <div class="col" id="people"></div>
+        <div class="col" id="people"></div>
+        <div class="col" id="people"></div>
+        <div class="col" id="people"></div>
+        <div class="col" id="people"></div>
+        <div class="col d-none d-ms-block" id="people"></div>
+        <div class="col d-none d-md-block" id="people"></div>
+        <div class="col d-none d-md-block" id="people"></div>
+        <div class="col d-none d-md-block" id="people"></div>
+        <div class="col d-none d-lg-block" id="people"></div>
+    </div>
+</div>
+
 <link rel='stylesheet' href='/stylesheets/index.css' />
 
 <script>
+
     document.querySelector('body > div > div > div:nth-child(3) > button').addEventListener('click', (e) => {
         window.location.href = "/login"
     });
     document.querySelector('body > div > div > div.mx-auto.d-flex.justify-content-center.m-3 > button').addEventListener('click', (e) => {
         window.location.href = "/signup"
     });
+    let users = {};
+    axios.post("/showPeople").then(res => {
+        users = res.data;
 
-
+        let people = document.querySelectorAll("#people");
+        for (let i = 0; i < people.length; i++) {
+            people[i].innerHTML = `<img src=${users[i].profilePicture} style="width: 50px; height : 50px; border-radius : 100%;"/>`
+        }
+    })
 
 </script>

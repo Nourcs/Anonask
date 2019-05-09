@@ -2,7 +2,8 @@ var express = require("express");
 var router = express.Router();
 var Question = require("../models/questions");
 var hbs = require("hbs");
-
+var User = require("../models/user");
+// var User = require("../models/user");
 var loginRoute = require("./auth/login");
 var signupRoute = require("./auth/signup");
 var logoutRoute = require("./auth/logout");
@@ -14,6 +15,27 @@ var authMiddleware = require("./authMiddleware");
 
 router.get("/", authMiddleware.homePage, function(req, res, next) {
   res.render("index");
+});
+
+router.post("/showPeople", (req, res, next) => {
+  let users = [];
+  User.count().exec(function(err, count) {
+    for (let i = 0; i < 10; i++) {
+      var random = Math.floor(Math.random() * count);
+      User.findOne()
+        .skip(random)
+        .exec(function(err, result) {
+          users.push(result);
+          // if (users.indexOf(result) >= 0) {
+          //   users.splice(users.indexOf(result), 1);
+          //   i--;
+          // }
+          if (users.length === 10) {
+            res.json(users);
+          }
+        });
+    }
+  });
 });
 
 router.post("/notifications", (req, res, next) => {
