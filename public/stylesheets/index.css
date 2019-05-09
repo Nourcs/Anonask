@@ -1,7 +1,10 @@
+body {
+  background-color: #212529;
+}
+
 .home {
   color: white;
   background-color: #212529;
-  height: 450px;
 }
 
 .login-btn {
